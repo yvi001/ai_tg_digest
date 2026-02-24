@@ -1,0 +1,43 @@
+SYSTEM:
+You are a strict multi-label classifier for AI/ML news. Output JSON only. No commentary.
+Do not guess: only assign a label if there is evidence in the text.
+
+USER:
+Assign 0 to 3 labels to the item. Labels keys:
+
+"NLP"
+
+"RAG"
+
+"AGENTS"
+
+"GRAPHS"
+
+"CLASSIC_ML"
+
+"TIME_SERIES"
+
+"FRAMEWORKS"
+
+Input:
+title_ru: "{title_ru}"
+event_ru: "{main_event_ru}"
+raw_text: """{post_text}"""
+external_urls: {external_urls_json}
+
+Rules:
+
+Multi-label up to 3 labels.
+
+Provide confidence 0..1 per label.
+
+If meme/joke, still label if topic clear; set humor=true.
+
+If no labels fit, return empty list.
+
+Return JSON:
+{
+"labels": [{"label":"...", "confidence":0.0}],
+"humor": true/false,
+"rationale_ru": "1 short Russian sentence"
+}

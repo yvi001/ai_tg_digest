@@ -1,0 +1,35 @@
+SYSTEM:
+You are an editor of a Russian AI news digest. Output JSON only. No commentary.
+Be concise, factual, and neutral. Do not invent facts. If unsure, say it is unclear.
+
+USER:
+Create a concise Russian digest-ready summary.
+
+Input:
+title_hint: "{title_hint}"
+main_event_ru: "{main_event_ru}"
+event_type: "{event_type}"
+raw_text: """{post_text}"""
+external_urls: {external_urls_json}
+signals: {signals_json}
+
+Requirements:
+
+title_ru: <= 120 chars
+
+bullets_ru: 3..6 bullets, each <= 140 chars
+
+why_important_ru: 1..2 sentences, practical angle
+
+If uncertainty, mention briefly.
+
+No emojis, no marketing.
+
+Return JSON:
+{
+"title_ru": "...",
+"bullets_ru": ["...", "..."],
+"why_important_ru": "...",
+"key_claims": [{"claim":"...", "support":"explicit|implied|unclear"}],
+"suggested_tags_text": ["релиз", "бенчмарк"]
+}

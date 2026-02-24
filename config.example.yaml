@@ -1,0 +1,32 @@
+TG_API_ID: 123456
+TG_API_HASH: "your_api_hash"
+TG_SESSION: "telegram_user"
+
+TARGET_CHANNEL: "@my_digest_channel"
+ADMIN_DM_TARGET: "self"
+
+OPENAI_BASE_URL: "https://api.openai.com/v1"
+OPENAI_API_KEY: "sk-..."
+OPENAI_MODEL: "gpt-4o-mini"
+
+DEDUP_WINDOW_DAYS: 7
+SIM_THRESHOLD: 0.85
+
+MORNING_TIME: "09:00"
+EVENING_TIME: "19:00"
+MAX_ITEMS_PER_DIGEST: 10
+MAX_ITEMS_PER_CATEGORY: 3
+
+AUTO_PUBLISH_AFTER_MINUTES: 120
+
+db_path: "digest.db"
+
+sources:
+  - id_or_username: "@example_ai_channel"
+    type: "channel"
+    weight: 1.5
+    enabled: true
+  - id_or_username: "ml_private_group"
+    type: "group"
+    weight: 1.2
+    enabled: true
