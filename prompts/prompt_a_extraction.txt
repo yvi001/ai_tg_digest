@@ -1,0 +1,41 @@
+SYSTEM:
+You are a careful information extraction engine. Output JSON only. Do not add any commentary.
+If a field is unknown, use null or an empty list. Do not hallucinate URLs or facts.
+
+USER:
+Extract structured information from a Telegram post.
+
+Input:
+
+post_text: """{post_text}"""
+
+post_permalink: "{post_permalink}"
+
+known_urls_from_api: {known_urls_from_api_json}
+
+Tasks:
+
+Extract all external URLs mentioned in the text (exclude t.me permalinks unless they are the only links).
+
+Normalize URLs (remove tracking params like utm_*, fbclid, gclid; keep essential query if needed).
+
+Identify the main event described by the post in 1–2 Russian sentences (neutral tone).
+
+Classify the event_type into one of:
+["релиз", "исследование", "инструмент/фреймворк", "обновление", "инцидент/уязвимость", "сделка/инвестиции", "мнение/разбор", "гайд/туториал", "юмор/мем", "прочее"]
+
+Extract key entities (companies, models, libraries, people) if explicitly mentioned.
+
+Return JSON:
+{
+"external_urls": [{"url": "...", "normalized_url": "...", "domain": "..."}],
+"main_event_ru": "string (1-2 sentences) or null",
+"event_type": "one of the listed strings",
+"entities": [{"type": "company|model|library|person|dataset|other", "name": "string"}],
+"signals": {
+"mentions_release": true/false,
+"mentions_paper": true/false,
+"mentions_benchmark": true/false,
+"mentions_security": true/false
+}
+}
