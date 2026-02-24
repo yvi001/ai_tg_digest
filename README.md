@@ -62,3 +62,15 @@ pytest
 - `prompt_a_extraction.txt`
 - `prompt_b_multilabel.txt`
 - `prompt_c_summary.txt`
+
+## Troubleshooting: `pip install -e .[test]`
+Если видите ошибку `Multiple top-level packages discovered in a flat-layout`, обычно причина — конфликт при merge в `pyproject.toml` и потеря секции setuptools.
+
+Проверьте, что в `pyproject.toml` есть блок:
+```toml
+[tool.setuptools]
+packages = ["ai_tg_digest"]
+include-package-data = true
+```
+
+И что в репозитории присутствуют `setup.py` и `setup.cfg` с явным пакетом `ai_tg_digest` (fallback для разных связок pip/setuptools).
